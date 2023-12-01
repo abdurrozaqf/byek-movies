@@ -17,7 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`w-full h-screen flex flex-col ${inter.className}`}>
+      <body
+        className={`w-full h-screen flex flex-col bg-gradient-to-br dark:from-black/5 dark:to-white/5 ${inter.className}`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -25,7 +27,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <div className="w-full flex-grow overflow-auto bg-white dark:bg-black px-32">
+          <div className="w-full flex-grow overflow-auto px-8 md:px-16 xl:px-32 py-14">
             {children}
           </div>
         </ThemeProvider>
