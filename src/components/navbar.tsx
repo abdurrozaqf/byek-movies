@@ -13,29 +13,61 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useTheme } from "next-themes";
+import {
+  ClipboardEditIcon,
+  LogInIcon,
+  LogOutIcon,
+  MoonIcon,
+  SunIcon,
+} from "lucide-react";
 
 const Navbar = () => {
+  const { setTheme, theme } = useTheme();
+
+  function handleTheme() {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+  }
+
   return (
-    <header className="w-full sticky top-0 bg-white/90 dark:bg-black/90 border-b border-white/25 z-50">
-      <nav className="flex justify-between px-32 py-4 items-center">
+    <header className="w-full sticky top-0 z-50 border-b">
+      <nav className="flex items-center justify-between bg-gradient-to-tr dark:from-black/5 dark:to-white/5 px-8 md:px-16 xl:px-32 py-4">
         <Link href="/">
-          <p className="dark:text-white">BYEK!</p>
+          <p className="text-black dark:text-white font-extrabold tracking-widest text-2xl">
+            Byek!
+          </p>
         </Link>
         <div className="">
           <DropdownMenu>
             <DropdownMenuTrigger>
               <Avatar>
-                {/* <AvatarImage src="https://github.com/shadcn.png" /> */}
+                <AvatarImage src="https://github.com/shadcn.png" />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent
+              className="w-[12rem] dark:bg-black/90"
+              align="end"
+            >
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Billing</DropdownMenuItem>
-              <DropdownMenuItem>Team</DropdownMenuItem>
-              <DropdownMenuItem>Subscription</DropdownMenuItem>
+              <DropdownMenuItem>My Profile</DropdownMenuItem>
+              <DropdownMenuItem>My Favorite </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => handleTheme()}
+                className=" flex justify-between"
+              >
+                Change Theme {theme == "light" ? <SunIcon /> : <MoonIcon />}
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className=" flex justify-between">
+                Login <LogInIcon />
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className=" flex justify-between">
+                Logout <LogOutIcon color="red" />
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
