@@ -14,7 +14,7 @@ async function Page({ params }: Props) {
   const movies = await getMoviesGenre(params.id);
 
   return (
-    <div className="flex flex-col">
+    <div className="pb-10">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 pt-6 justify-items-center">
         {movies.results.map((movie: any) => (
           <MovieCardPages
@@ -23,9 +23,6 @@ async function Page({ params }: Props) {
             href={`/movies/detail/${movie.id}`}
           />
         ))}
-      </div>
-      <div className="mb-10 border">
-        <ChevronLeft />
       </div>
     </div>
   );

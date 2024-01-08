@@ -3,7 +3,7 @@ import React from "react";
 
 import MovieCardPages from "@/components/MovieCardPages";
 
-import { getMoviesPagenation } from "@/lib/apis/movies";
+import { getMoviesPagination } from "@/lib/apis/movies";
 
 type Props = {
   params: { page: string };
@@ -29,10 +29,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 async function Page({ params }: Props) {
-  const datas = await getMoviesPagenation({ list: params.page, page: 1 });
+  const datas = await getMoviesPagination({ list: params.page, page: 1 });
 
   return (
-    <div>
+    <div className="pb-10">
       <p className="pl-4 border-x-4 border-red-600 text-center">{`${
         params.page === "now_playing"
           ? "Now Playing"

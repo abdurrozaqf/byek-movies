@@ -21,7 +21,7 @@ async function Page({ params }: Props) {
   const datas = await getMovies({ name: params.page });
 
   return (
-    <div>
+    <div className="pb-10">
       <p className="pl-4 border-x-4 border-red-600 text-center">
         Result found: {decodeURIComponent(params.page)}
       </p>
