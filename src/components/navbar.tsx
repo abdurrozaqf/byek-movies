@@ -1,26 +1,12 @@
 "use client";
 
+import { useTheme } from "next-themes";
 import Link from "next/link";
 import React from "react";
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { MoonIcon, SunIcon } from "lucide-react";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useTheme } from "next-themes";
-import {
-  ClipboardEditIcon,
-  LogInIcon,
-  LogOutIcon,
-  MoonIcon,
-  SunIcon,
-} from "lucide-react";
+import SearchBox from "@/components/SearchBox";
 
 const Navbar = () => {
   const { setTheme, theme } = useTheme();
@@ -32,44 +18,21 @@ const Navbar = () => {
 
   return (
     <header className="w-full sticky top-0 z-50 border-b">
-      <nav className="flex items-center justify-between bg-gradient-to-tr dark:from-black/5 dark:to-white/5 px-8 md:px-16 xl:px-32 py-4">
+      <nav className="flex items-center justify-between container py-4">
         <Link href="/">
           <p className="text-black dark:text-white font-extrabold tracking-widest text-2xl">
             Byek!
           </p>
         </Link>
-        <div className="">
-          <DropdownMenu>
-            <DropdownMenuTrigger>
-              <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent
-              className="w-[12rem] dark:bg-black/90"
-              align="end"
-            >
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>My Profile</DropdownMenuItem>
-              <DropdownMenuItem>My Favorite </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => handleTheme()}
-                className=" flex justify-between"
-              >
-                Change Theme {theme == "light" ? <SunIcon /> : <MoonIcon />}
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem className=" flex justify-between">
-                Login <LogInIcon />
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem className=" flex justify-between">
-                Logout <LogOutIcon color="red" />
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+        <div className="flex items-center gap-x-4">
+          <SearchBox />
+          <div onClick={() => handleTheme()} className="cursor-pointer">
+            {theme == "light" ? (
+              <SunIcon className="border h-[40px] w-[40px] p-2 rounded-md shadow-md" />
+            ) : (
+              <MoonIcon className="border h-[40px] w-[40px] p-2 rounded-md shadow-md" />
+            )}
+          </div>
         </div>
       </nav>
     </header>
