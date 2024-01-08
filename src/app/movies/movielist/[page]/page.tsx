@@ -1,27 +1,16 @@
-import axios from "axios";
-import React from "react";
-import Image from "next/image";
-
-import { Response } from "@/lib/types/api";
 import { Metadata } from "next";
-import MovieCardPages from "@/components/movie-card-pages";
+import React from "react";
+
+import MovieCardPages from "@/components/MovieCardPages";
+
+import { getMoviesPagenation } from "@/lib/apis/movies";
 
 type Props = {
   params: { page: string };
 };
 
-async function getData(page: string) {
-  const result = await axios.get(
-    `https://api.themoviedb.org/3/movie/${page}?api_key=a936a84d935e7f41bcf12783a629026f`
-  );
-
-  return result.data as Response;
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = params.page;
-
-  const movie = await getData(page);
 
   return {
     title:
@@ -39,8 +28,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-async function Page({ params }: { params: { page: string } }) {
-  const datas = await getData(params.page);
+async function Page({ params }: Props) {
+  const datas = await getMoviesPagenation({ list: params.page, page: 1 });
 
   return (
     <div>
@@ -55,12 +44,12 @@ async function Page({ params }: { params: { page: string } }) {
           ? "Upcoming"
           : ""
       }`}</p>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 pt-4 justify-items-center">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 pt-6 justify-items-center">
         {datas.results.map((movie) => (
           <MovieCardPages
             key={movie.id}
             data={movie}
-            href={`/movies/${movie.id}`}
+            href={`/movies/detail/${movie.id}`}
           />
         ))}
       </div>
