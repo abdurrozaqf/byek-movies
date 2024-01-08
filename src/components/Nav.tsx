@@ -8,7 +8,7 @@ import { MoonIcon, SunIcon } from "lucide-react";
 
 import SearchBox from "@/components/SearchBox";
 
-const NavBar = () => {
+const Navbar = () => {
   const { setTheme, theme } = useTheme();
 
   function handleTheme() {
@@ -39,4 +39,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Navbar;

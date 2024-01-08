@@ -4,7 +4,7 @@ import "@/styles/globals.css";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
-import NavBar from "../components/NavBar";
+import Navbar from "@/components/Nav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +27,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NavBar />
+          <Navbar />
           <div className="flex grow overflow-auto pt-10">
             <div className="container">{children}</div>
           </div>
