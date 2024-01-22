@@ -1,6 +1,6 @@
 
 ## Byek! Movies
-A simple project i called Byek Movies,this is a website that helps you see details movies by seacrh movie title
+A simple project I named 'Byek Movies.' This is a website that helps you view movie details by searching for the movie title.
 
 Click [_here_](https://byek-movies.vercel.app/) for result.
 
