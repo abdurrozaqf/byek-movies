@@ -105,7 +105,7 @@ async function Page({ params }: Props) {
         <ScrollArea className="h-auto w-full rounded-md mt-4">
           <h1 className="font-semibold text-2xl">Similar movies</h1>
           <div className="flex h-fit w-max space-x-4 pt-4 pb-1 px-4 overflow-hidden mb-2">
-            {similarMovies?.results.map((movie) => (
+            {similarMovies.results.map((movie) => (
               <MovieCard
                 key={movie.id}
                 data={movie}

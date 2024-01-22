@@ -14,13 +14,13 @@ async function Home() {
   const datasUpcoming = await getMoviesbyList({ list: "upcoming" });
 
   return (
-    <div className="flex flex-col space-y-10 pb-10">
+    <div className="flex flex-col space-y-10">
       <div className="border-b">
         <div className="flex justify-between items-center">
           <p className="pl-4 border-l-4 border-red-600">Featured</p>
           <Link
             className="bg-red-600 text-white text-sm p-[0.3rem] rounded-md leading-none cursor-pointer"
-            href="/movies/movielist/popular"
+            href="/movies/popular"
           >
             SEE ALL
           </Link>
@@ -40,7 +40,7 @@ async function Home() {
           <p className="pl-4 border-l-4 border-red-600">Now Playing</p>
           <Link
             className="bg-red-600 text-white text-sm p-[0.3rem] rounded-md leading-none cursor-pointer"
-            href="/movies/movielist/now_playing"
+            href="/movies/now_playing"
           >
             SEE ALL
           </Link>
@@ -63,7 +63,7 @@ async function Home() {
           <p className="pl-4 border-l-4 border-red-600">Top Rated</p>
           <Link
             className="bg-red-600 text-white text-sm p-[0.3rem] rounded-md leading-none cursor-pointer"
-            href="/movies/movielist/top_rated"
+            href="/movies/top_rated"
           >
             SEE ALL
           </Link>
@@ -86,7 +86,7 @@ async function Home() {
           <p className="pl-4 border-l-4 border-red-600">Upcoming</p>
           <Link
             className="bg-red-600 text-white text-sm p-[0.3rem] rounded-md leading-none cursor-pointer"
-            href="/movies/movielist/upcoming"
+            href="/movies/upcoming"
           >
             SEE ALL
           </Link>

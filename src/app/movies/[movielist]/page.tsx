@@ -6,22 +6,22 @@ import MovieCardPages from "@/components/MovieCardPages";
 import { getMoviesPagination } from "@/lib/apis/movies";
 
 type Props = {
-  params: { page: string };
+  params: { movielist: string };
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const page = params.page;
+  const movielist = params.movielist;
 
   return {
     title:
       `${
-        page === "now_playing"
+        movielist === "now_playing"
           ? "Now Playing"
-          : page === "popular"
+          : movielist === "popular"
           ? "Popular"
-          : page === "top_rated"
+          : movielist === "top_rated"
           ? "Top Rated"
-          : page === "upcoming"
+          : movielist === "upcoming"
           ? "Upcoming"
           : ""
       }` + " | Byek!",
@@ -29,18 +29,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 async function Page({ params }: Props) {
-  const datas = await getMoviesPagination({ list: params.page, page: 1 });
+  const datas = await getMoviesPagination({ list: params.movielist, page: 1 });
 
   return (
     <div className="pb-10">
       <p className="pl-4 border-x-4 border-red-600 text-center">{`${
-        params.page === "now_playing"
+        params.movielist === "now_playing"
           ? "Now Playing"
-          : params.page === "popular"
+          : params.movielist === "popular"
           ? "Popular"
-          : params.page === "top_rated"
+          : params.movielist === "top_rated"
           ? "Top Rated"
-          : params.page === "upcoming"
+          : params.movielist === "upcoming"
           ? "Upcoming"
           : ""
       }`}</p>

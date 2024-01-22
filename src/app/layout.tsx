@@ -13,14 +13,16 @@ export const metadata: Metadata = {
   description: "Welcome to Byek! Movies",
 };
 
-export default function RootLayout({
-  children,
-}: {
+interface RootLayoutProps {
   children: React.ReactNode;
-}) {
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`w-full h-screen flex flex-col ${inter.className}`}>
+      <body
+        className={`w-full h-full flex flex-col overflow-auto transition-all ${inter.className} `}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -28,8 +30,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <div className="flex grow overflow-auto pt-10">
-            <div className="container">{children}</div>
+          <div className="container grow mx-auto flex flex-col py-10">
+            {children}
           </div>
           <Toaster />
         </ThemeProvider>
