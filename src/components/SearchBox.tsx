@@ -102,7 +102,11 @@ const SearchBox = () => {
                   >
                     <Image
                       className="aspect-[2/3] object-cover rounded mb-3 shadow shadow-black"
-                      src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
+                      src={
+                        data.poster_path
+                          ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
+                          : `/images/default-movie-poster.png`
+                      }
                       alt={data.title}
                       width={60}
                       height={100}
