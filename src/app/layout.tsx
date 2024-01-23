@@ -30,9 +30,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           disableTransitionOnChange
         >
           <Navbar />
-          <div className="container grow mx-auto flex flex-col py-10">
+          <section className="container grow mx-auto flex flex-col py-10">
             {children}
-          </div>
+          </section>
           <Toaster />
         </ThemeProvider>
       </body>

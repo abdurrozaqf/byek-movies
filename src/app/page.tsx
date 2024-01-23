@@ -14,7 +14,7 @@ async function Home() {
   const datasUpcoming = await getMoviesbyList({ list: "upcoming" });
 
   return (
-    <div className="flex flex-col space-y-10">
+    <section className="flex flex-col space-y-10">
       <div className="border-b">
         <div className="flex justify-between items-center">
           <p className="pl-4 border-l-4 border-red-600">Featured</p>
@@ -25,15 +25,16 @@ async function Home() {
             SEE ALL
           </Link>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 pt-6 justify-items-center mb-4">
+        <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 pt-6 justify-items-center mb-4">
           {datasPopular?.results.map((movie) => (
-            <MovieCardPages
-              key={movie.id}
-              data={movie}
-              href={`/movies/detail/${movie.id}`}
-            />
+            <li key={movie.id}>
+              <MovieCardPages
+                data={movie}
+                href={`/movies/detail/${movie.id}`}
+              />
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
       <div className="border-b">
         <div className="flex justify-between items-center">
@@ -46,15 +47,13 @@ async function Home() {
           </Link>
         </div>
         <ScrollArea className="h-auto w-full rounded-md">
-          <div className="flex h-fit w-max space-x-4 pt-4 pb-1 px-4 overflow-hidden mb-2">
+          <ul className="flex h-fit w-max space-x-4 p-4 overflow-hidden mb-2">
             {datasNowPlaying?.results.map((movie) => (
-              <MovieCard
-                key={movie.id}
-                data={movie}
-                href={`/movies/detail/${movie.id}`}
-              />
+              <li key={movie.id}>
+                <MovieCard data={movie} href={`/movies/detail/${movie.id}`} />
+              </li>
             ))}
-          </div>
+          </ul>
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
       </div>
@@ -69,15 +68,13 @@ async function Home() {
           </Link>
         </div>
         <ScrollArea className="h-auto w-full rounded-md">
-          <div className="flex h-fit w-max space-x-4 p-4 overflow-hidden mb-2">
+          <ul className="flex h-fit w-max space-x-4 p-4 overflow-hidden mb-2">
             {datasTopRated?.results.map((movie) => (
-              <MovieCard
-                key={movie.id}
-                data={movie}
-                href={`/movies/detail/${movie.id}`}
-              />
+              <li key={movie.id}>
+                <MovieCard data={movie} href={`/movies/detail/${movie.id}`} />
+              </li>
             ))}
-          </div>
+          </ul>
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
       </div>
@@ -92,19 +89,17 @@ async function Home() {
           </Link>
         </div>
         <ScrollArea className="h-auto w-full rounded-md">
-          <div className="flex h-fit w-max space-x-4 p-4 overflow-hidden mb-2">
+          <ul className="flex h-fit w-max space-x-4 p-4 overflow-hidden mb-2">
             {datasUpcoming?.results.map((movie) => (
-              <MovieCard
-                key={movie.id}
-                data={movie}
-                href={`/movies/detail/${movie.id}`}
-              />
+              <li key={movie.id}>
+                <MovieCard data={movie} href={`/movies/detail/${movie.id}`} />
+              </li>
             ))}
-          </div>
+          </ul>
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
       </div>
-    </div>
+    </section>
   );
 }
 

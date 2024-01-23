@@ -28,7 +28,7 @@ async function Page({ params }: Props) {
   const similarMovies = await getSimilarMovies(params.id);
 
   return (
-    <div className="flex flex-col gap-6 items-center">
+    <section className="flex flex-col gap-6 items-center">
       <div className="w-full flex justify-center relative rounded-2xl border overflow-hidden">
         <div className="w-[960px] h-[540px]">
           <iframe
@@ -104,19 +104,17 @@ async function Page({ params }: Props) {
         </div>
         <ScrollArea className="h-auto w-full rounded-md mt-4">
           <h1 className="font-semibold text-2xl">Similar movies</h1>
-          <div className="flex h-fit w-max space-x-4 pt-4 pb-1 px-4 overflow-hidden mb-2">
+          <ul className="flex h-fit w-max space-x-4 pt-4 pb-1 px-4 overflow-hidden mb-2">
             {similarMovies.results.map((movie) => (
-              <MovieCard
-                key={movie.id}
-                data={movie}
-                href={`/movies/detail/${movie.id}`}
-              />
+              <li key={movie.id}>
+                <MovieCard data={movie} href={`/movies/detail/${movie.id}`} />
+              </li>
             ))}
-          </div>
+          </ul>
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
       </div>
-    </div>
+    </section>
   );
 }
 

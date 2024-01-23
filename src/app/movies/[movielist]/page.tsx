@@ -32,7 +32,7 @@ async function Page({ params }: Props) {
   const datas = await getMoviesPagination({ list: params.movielist, page: 1 });
 
   return (
-    <div className="pb-10">
+    <section className="pb-10">
       <p className="pl-4 border-x-4 border-red-600 text-center">{`${
         params.movielist === "now_playing"
           ? "Now Playing"
@@ -44,16 +44,14 @@ async function Page({ params }: Props) {
           ? "Upcoming"
           : ""
       }`}</p>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 pt-6 justify-items-center">
+      <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 pt-6 justify-items-center">
         {datas.results.map((movie) => (
-          <MovieCardPages
-            key={movie.id}
-            data={movie}
-            href={`/movies/detail/${movie.id}`}
-          />
+          <li key={movie.id}>
+            <MovieCardPages data={movie} href={`/movies/detail/${movie.id}`} />
+          </li>
         ))}
-      </div>
-    </div>
+      </ul>
+    </section>
   );
 }
 

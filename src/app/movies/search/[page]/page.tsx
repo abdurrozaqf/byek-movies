@@ -21,20 +21,18 @@ async function Page({ params }: Props) {
   const datas = await getMovies({ name: params.page });
 
   return (
-    <div className="pb-10">
+    <section className="pb-10">
       <p className="pl-4 border-x-4 border-red-600 text-center">
         Result found: {decodeURIComponent(params.page)}
       </p>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 pt-6 justify-items-center">
+      <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 pt-6 justify-items-center">
         {datas.results.map((movie) => (
-          <MovieCardPages
-            key={movie.id}
-            data={movie}
-            href={`/movies/${movie.id}`}
-          />
+          <li key={movie.id}>
+            <MovieCardPages data={movie} href={`/movies/${movie.id}`} />
+          </li>
         ))}
-      </div>
-    </div>
+      </ul>
+    </section>
   );
 }
 

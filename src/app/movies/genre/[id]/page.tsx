@@ -14,17 +14,15 @@ async function Page({ params }: Props) {
   const movies = await getMoviesGenre(params.id);
 
   return (
-    <div className="pb-10">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 pt-6 justify-items-center">
+    <section className="pb-10">
+      <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 pt-6 justify-items-center">
         {movies.results.map((movie) => (
-          <MovieCardPages
-            key={movie.id}
-            data={movie}
-            href={`/movies/detail/${movie.id}`}
-          />
+          <li key={movie.id}>
+            <MovieCardPages data={movie} href={`/movies/detail/${movie.id}`} />
+          </li>
         ))}
-      </div>
-    </div>
+      </ul>
+    </section>
   );
 }
 
