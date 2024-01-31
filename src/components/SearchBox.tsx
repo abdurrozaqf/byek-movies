@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useState } from "react";
 import debounce from "lodash.debounce";
 import Image from "next/image";
 import Link from "next/link";
@@ -39,7 +39,7 @@ const SearchBox = () => {
     }
 
     const response = await getMovies({
-      name: query,
+      title: query,
     });
     const newDatas =
       response.results.map((data) => {
@@ -70,20 +70,20 @@ const SearchBox = () => {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[500px] justify-between shadow-md"
+          className="w-[350px] justify-between shadow-md bg-transparent border-white hover:bg-transparent text-white hover:text-slate-400"
         >
           <p className="truncate">{value || "Search movie ..."}</p>
-          <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          <Search className="ml-2 h-4 w-4 shrink-0" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[500px] p-0">
-        <Command className="">
+      <PopoverContent className="w-[350px] p-0 bg-background/50 backdrop-blur">
+        <Command className="bg-transparent">
           <CommandInput
             className="placeholder:italic"
             placeholder="Search"
             onValueChange={onInputChange}
           />
-          <CommandEmpty>No framework found.</CommandEmpty>
+          <CommandEmpty>No movies found.</CommandEmpty>
           <CommandGroup>
             {datas
               .map((data) => (
@@ -92,7 +92,7 @@ const SearchBox = () => {
                   href={`/movies/detail/${data.movie_id}`}
                 >
                   <CommandItem
-                    className="flex gap-4"
+                    className="flex gap-4 cursor-pointer"
                     value={data.title}
                     onSelect={() => {
                       setValue("");
@@ -101,16 +101,16 @@ const SearchBox = () => {
                     }}
                   >
                     <Image
-                      className="aspect-[2/3] object-cover rounded mb-3 shadow shadow-black"
                       src={
                         data.poster_path
                           ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
                           : `/images/default-movie-poster.png`
                       }
-                      alt={data.title}
+                      priority
                       width={60}
                       height={100}
-                      priority
+                      alt={data.title}
+                      className="aspect-[2/3] object-cover rounded mb-3 shadow shadow-black"
                     />
                     <h1 className="">
                       <span>{data.title}</span>
@@ -125,7 +125,11 @@ const SearchBox = () => {
               .slice(0, 5)}
           </CommandGroup>
         </Command>
-        <div className="text-center py-1 border-t">
+        <div
+          className={`${
+            datas.length ? "block" : "hidden"
+          } text-center py-1 border-t`}
+        >
           {datas.length >= 5 && (
             <Link
               href={`/movies/search/${value}`}
