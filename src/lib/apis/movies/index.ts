@@ -1,17 +1,18 @@
 import {
   getMovies,
+  getMoviesList,
   getMoviesGenre,
   getDetailMovie,
-  getMoviesbyList,
   getSimilarMovies,
-  getMoviesPagination,
 } from "./api";
+import { Movie, MovieVidsType } from "./type";
 
 export {
   getMovies,
+  getMoviesList,
   getMoviesGenre,
   getDetailMovie,
-  getMoviesbyList,
   getSimilarMovies,
-  getMoviesPagination,
 };
+
+export type { Movie, MovieVidsType };

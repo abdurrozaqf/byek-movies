@@ -1,8 +1,7 @@
-import { Movie } from "../apis/movies/type";
-
 export interface Request {
-  name?: string;
+  title?: string;
   list?: string;
+  genre_id?: number;
   page?: string | number;
 }
 

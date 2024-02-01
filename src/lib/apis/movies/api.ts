@@ -1,8 +1,8 @@
+import axiosWithConfig from "@/lib/apis/axiosWithConfig";
 import { Request, Response } from "@/lib/types/api";
-import axiosWithConfig from "../axiosWithConfig";
 import { Movie, MovieDetail } from "./type";
 
-export const getMoviesPagination = async (params?: Request) => {
+export const getMoviesList = async (params?: Request) => {
   const response = await axiosWithConfig.get(
     `/movie/${params?.list}?page=${params?.page}`
   );
@@ -16,7 +16,7 @@ export const getMoviesbyList = async (params?: Request) => {
 
 export const getMovies = async (params?: Request) => {
   const response = await axiosWithConfig.get(
-    `/search/movie?query=${params?.name}`
+    `/search/movie?query=${params?.title}`
   );
   return response.data as Response<Movie[]>;
 };
@@ -33,9 +33,9 @@ export const getSimilarMovies = async (movie_id: number) => {
   return response.data as Response<Movie[]>;
 };
 
-export const getMoviesGenre = async (genre_id: number, params?: Request) => {
+export const getMoviesGenre = async (params?: Request) => {
   const response = await axiosWithConfig.get(
-    `/discover/movie?sort_by=popularity.desc&with_genres=${genre_id}&page=${params?.page}`
+    `/discover/movie?sort_by=popularity.desc&with_genres=${params?.genre_id}&page=${params?.page}`
   );
   return response.data as Response<MovieDetail[]>;
 };
