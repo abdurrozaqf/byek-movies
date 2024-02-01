@@ -1,27 +1,24 @@
-import React from "react";
+import { Metadata } from "next";
 
-import { ChevronLeft } from "lucide-react";
-
-import MovieCardPages from "@/components/MovieCardPages";
-
-import { getMoviesGenre } from "@/lib/apis/movies";
+import ContentGenreList from "@/modules/genrelist/ContentGenreList";
+import { GenreList } from "@/common/constant/genre-list";
 
 type Props = {
   params: { id: number };
 };
 
-async function Page({ params }: Props) {
-  const movies = await getMoviesGenre(params.id);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const Genre = GenreList.genres.find((genre) => genre.id === +params.id);
 
+  return {
+    title: Genre?.name + " | Byek! Movies",
+  };
+}
+
+async function Page({ params }: Props) {
   return (
-    <section className="pb-10">
-      <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 pt-6 justify-items-center">
-        {movies.results.map((movie) => (
-          <li key={movie.id}>
-            <MovieCardPages data={movie} href={`/movies/detail/${movie.id}`} />
-          </li>
-        ))}
-      </ul>
+    <section className="pb-10 container">
+      <ContentGenreList genre_id={params.id} />
     </section>
   );
 }

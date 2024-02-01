@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 import { UserCircle } from "lucide-react";
 
@@ -19,7 +18,7 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const movie = await getDetailMovie(params.id);
   return {
-    title: movie.title + " | Byek!",
+    title: movie.title + " | Byek! Movies",
   };
 }
 
@@ -28,7 +27,7 @@ async function Page({ params }: Props) {
   const similarMovies = await getSimilarMovies(params.id);
 
   return (
-    <section className="flex flex-col gap-6 items-center">
+    <section className="flex flex-col gap-6 items-center container">
       <div className="w-full flex justify-center relative rounded-2xl border overflow-hidden">
         <div className="w-[960px] h-[540px]">
           <iframe
