@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import MovieCardPages from "@/components/MovieCardPages";
 import { Button } from "@/components/ui/button";
 
-import useFetchGenreList from "@/lib/hooks/useFetchGenreList";
+import useFetchGenreList from "@/libs/hooks/useFetchGenreList";
 
 interface Props {
   genre_id: number;

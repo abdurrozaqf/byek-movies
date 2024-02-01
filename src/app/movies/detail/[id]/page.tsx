@@ -8,8 +8,8 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import MovieCard from "@/components/MovieCard";
 import { Badge } from "@/components/ui/badge";
 
-import { getDetailMovie, getSimilarMovies } from "@/lib/apis/movies";
-import { formatDate, formatRuntime } from "@/lib/utils/formatter";
+import { getDetailMovie, getSimilarMovies } from "@/libs/apis/movies";
+import { formatDate, formatRuntime } from "@/libs/utils/formatter";
 
 type Props = {
   params: { id: number };

@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 
-import { getMovies } from "@/lib/apis/movies";
+import { getMovies } from "@/libs/apis/movies";
 
 interface ComboboxDatas {
   movie_id: number;

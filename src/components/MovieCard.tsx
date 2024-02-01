@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
-import { formatDate } from "@/lib/utils/formatter";
-import { Movie } from "@/lib/apis/movies/type";
+import { formatDate } from "@/libs/utils/formatter";
+import { Movie } from "@/libs/apis/movies/type";
 
 interface Props {
   data: Movie;

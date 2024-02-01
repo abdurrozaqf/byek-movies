@@ -1,9 +1,7 @@
-import { Movie } from "@/lib/apis/movies";
+import { Movie } from "@/libs/apis/movies";
 import { UserCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
-import React from "react";
 
 type Props = {
   data: Movie;

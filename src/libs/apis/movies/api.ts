@@ -1,5 +1,5 @@
-import axiosWithConfig from "@/lib/apis/axiosWithConfig";
-import { Request, Response } from "@/lib/types/api";
+import axiosWithConfig from "@/libs/apis/axiosWithConfig";
+import { Request, Response } from "@/libs/types/api";
 import { Movie, MovieDetail } from "./type";
 
 export const getMoviesList = async (params?: Request) => {

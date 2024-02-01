@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import MovieCardPages from "@/components/MovieCardPages";
 import { Button } from "@/components/ui/button";
 
-import useFetchSearchList from "@/lib/hooks/useFetchSearchList";
+import useFetchSearchList from "@/libs/hooks/useFetchSearchList";
 
 interface Props {
   title: string;

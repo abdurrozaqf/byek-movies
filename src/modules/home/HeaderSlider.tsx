@@ -1,24 +1,21 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
 
 import Autoplay from "embla-carousel-autoplay";
 
 import {
   Carousel,
   CarouselApi,
-  CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
+  CarouselContent,
 } from "@/components/ui/carousel";
-
-import axiosWithConfig from "@/lib/apis/axiosWithConfig";
-import { Response } from "@/lib/types/api";
-import { Movie } from "@/lib/apis/movies";
 import MovieCardHeader from "@/components/MovieCardHeader";
+
+import axiosWithConfig from "@/libs/apis/axiosWithConfig";
+import { Response } from "@/libs/types/api";
+import { Movie } from "@/libs/apis/movies";
 
 export const CarouselPlugin = () => {
   const [api, setApi] = useState<CarouselApi>();
