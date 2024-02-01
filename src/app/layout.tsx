@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import "@/styles/globals.css";
 
+import ReactQueryProvider from "@/components/react-query-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/Nav";
@@ -21,19 +22,21 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`w-full h-full flex flex-col overflow-auto transition-all ${inter.className} `}
+        className={`w-full min-h-screen flex flex-col justify-center overflow-auto  ${inter.className}`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          <section className="container grow mx-auto flex flex-col py-10">
-            {children}
-          </section>
-          <Toaster />
+          <ReactQueryProvider>
+            <Navbar />
+            <main className="w-full scroll-smooth transition-all duration-300">
+              {children}
+            </main>
+            <Toaster />
+          </ReactQueryProvider>
         </ThemeProvider>
       </body>
     </html>

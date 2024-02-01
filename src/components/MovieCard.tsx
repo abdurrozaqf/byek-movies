@@ -16,23 +16,26 @@ const MovieCard = (props: Props) => {
 
   return (
     <Link href={href}>
-      <div className="w-[190px] h-fit flex flex-col bg-gradient-to-t from-white/0 to-white/0  dark:hover:from-indigo-800/30 dark:hover:to-indigo-100/20 px-2 pt-2 pb-5 scale-100 hover:scale-[1.01] rounded-md transition-all duration-200">
+      <div className="w-[190px] h-fit flex flex-col scale-100 hover:scale-[1.01] rounded-md transition-all duration-200">
         <Image
-          className="aspect-[2/3] object-cover rounded mb-3 shadow shadow-black dark:shadow-white"
           src={
             poster_path
               ? `https://image.tmdb.org/t/p/w500${poster_path}`
               : `/images/default-movie-poster.png`
           }
-          alt={title}
-          width={190}
-          height={290}
           priority
+          alt={title}
+          width="0"
+          height="0"
+          sizes="100vw"
+          className="w-full h-auto rounded relative"
         />
-        <h1 className="font-medium truncate">{title}</h1>
-        <p className="text-xs text-muted-foreground font-light">
-          {formatDate(release_date!)}
-        </p>
+        <div className="flex flex-col justify-end absolute bottom-0 bg-gradient-to-t from-black/70 to-black/0 h-[200px] w-full rounded p-4">
+          <h1 className="font-medium truncate text-white">{title}</h1>
+          <p className="text-xs text-slate-300 font-light">
+            {formatDate(release_date!)}
+          </p>
+        </div>
       </div>
     </Link>
   );

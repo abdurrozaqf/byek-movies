@@ -17,23 +17,23 @@ const Navbar = () => {
   }
 
   return (
-    <header className="w-full sticky top-0 z-10 border-b bg-background">
-      <nav className="container mx-auto flex items-center justify-between py-4">
+    <header className="w-full sticky top-0 z-10 bg-background/10 backdrop-blur">
+      <nav className="container flex items-center justify-between py-4">
         <Link href="/">
-          <p className="text-black dark:text-white font-extrabold tracking-widest text-2xl">
+          <p className="text-2xl text-white font-extrabold tracking-widest">
             Byek!
           </p>
         </Link>
-        <div className="flex items-center gap-x-4">
+        <div className="flex items-center justify-end gap-x-4 w-1/2">
           <SearchBox />
           <div
             onClick={() => handleTheme()}
-            className="cursor-pointer bg-background hover:bg-accent rounded-md"
+            className="cursor-pointer bg-transparent rounded-md text-white"
           >
             {theme == "light" ? (
-              <SunIcon className="border h-[40px] w-[40px] p-2 rounded-md shadow-md" />
+              <SunIcon className="border border-white h-[40px] w-[40px] p-2 rounded-md shadow-md" />
             ) : (
-              <MoonIcon className="border h-[40px] w-[40px] p-2 rounded-md shadow-md" />
+              <MoonIcon className="border border-white h-[40px] w-[40px] p-2 rounded-md shadow-md" />
             )}
           </div>
         </div>
