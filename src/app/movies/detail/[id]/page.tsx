@@ -53,6 +53,7 @@ async function Page({ params }: Props) {
             alt={movie.title}
             width={140}
             height={200}
+            className="hidden md:block"
           />
           <div className="w-full flex flex-col justify-between">
             <h1 className="text-2xl font-semibold leading-none flex flex-col">
@@ -85,7 +86,7 @@ async function Page({ params }: Props) {
               </p>
             </div>
             <hr />
-            <div className="flex gap-2">
+            <div className="flex gap-2 mt-4 md:mt-0">
               {movie.genres.map((genre) => (
                 <Link key={genre.id} href={`/movies/genre/${genre.id}`}>
                   <Badge variant={"default"} className="cursor-pointer">
@@ -101,17 +102,20 @@ async function Page({ params }: Props) {
           <h1 className="font-semibold text-2xl mb-6">Synopsis</h1>
           <p>{movie.overview}</p>
         </div>
-        <ScrollArea className="h-auto w-full rounded-md mt-4">
+        <div>
           <h1 className="font-semibold text-2xl">Similar movies</h1>
-          <ul className="flex h-fit w-max space-x-4 pt-4 pb-1 px-4 overflow-hidden mb-2">
-            {similarMovies.results.map((movie) => (
-              <li key={movie.id}>
-                <MovieCard data={movie} href={`/movies/detail/${movie.id}`} />
-              </li>
-            ))}
-          </ul>
-          <ScrollBar orientation="horizontal" />
-        </ScrollArea>
+          <hr />
+          <ScrollArea className="h-auto w-full rounded-md">
+            <ul className="flex h-fit w-max space-x-4 py-4 px-4 overflow-hidden mb-2">
+              {similarMovies.results.map((movie) => (
+                <li key={movie.id}>
+                  <MovieCard data={movie} href={`/movies/detail/${movie.id}`} />
+                </li>
+              ))}
+            </ul>
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
+        </div>
       </div>
     </section>
   );
