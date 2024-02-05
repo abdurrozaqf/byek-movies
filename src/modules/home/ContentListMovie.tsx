@@ -24,7 +24,7 @@ export default async function ContentListMovie() {
             SEE ALL
           </Link>
         </div>
-        <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 pt-6 justify-items-center mb-4">
+        <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 pt-6 mb-4">
           {datasPopular?.results.map((movie) => (
             <li key={movie.id}>
               <MovieCardPages
