@@ -1,13 +1,15 @@
-
 ## Byek! Movies
+
 A simple project I named 'Byek Movies.' This is a website that helps you view movie details by searching for the movie title.
 
 Click [_here_](https://byek-movies.vercel.app/) for result.
 
 ## Tech Stack
-Next Js, TailwindCSS, Shadcn/ui, Axios
+
+Next Js, Tailwind CSS, Shadcn/ui, React Query, Axios
 
 ## Run Locally
+
 Clone the project
 
 ```bash
