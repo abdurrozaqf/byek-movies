@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import MovieCardPages from "@/components/MovieCardPages";
 import MovieCard from "@/components/MovieCard";
 import {
