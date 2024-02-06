@@ -3,6 +3,13 @@ import Link from "next/link";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import MovieCardPages from "@/components/MovieCardPages";
 import MovieCard from "@/components/MovieCard";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 import { getMoviesbyList } from "@/libs/apis/movies/api";
 
@@ -36,67 +43,109 @@ export default async function ContentListMovie() {
         </ul>
       </div>
       <div className="border-b mb-10">
-        <div className="flex justify-between items-center">
-          <p className="pl-4 border-l-4 border-red-600">Now Playing</p>
-          <Link
-            className="bg-red-600 text-white text-sm p-[0.3rem] rounded-md leading-none cursor-pointer"
-            href="/movies/now_playing"
-          >
-            SEE ALL
-          </Link>
-        </div>
-        <ScrollArea className="h-auto w-full rounded-md">
-          <ul className="flex h-fit w-max space-x-4 p-4 overflow-hidden mb-2">
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="h-auto w-full rounded-md"
+        >
+          <div className="flex justify-between items-center">
+            <p className="pl-4 border-l-4 border-red-600">Now Playing</p>
+            <div className="flex items-center gap-x-8">
+              <Link
+                className="bg-red-600 text-white text-sm p-[0.3rem] rounded-md leading-none cursor-pointer relative"
+                href="/movies/now_playing"
+              >
+                SEE ALL
+              </Link>
+              <div>
+                <CarouselPrevious className="relative -left-2 top-0 -translate-y-0 h-6 w-6" />
+                <CarouselNext className="relative -right-0 top-0 -translate-y-0 h-6 w-6" />
+              </div>
+            </div>
+          </div>
+          <CarouselContent className="py-4">
             {datasNowPlaying?.results.map((movie) => (
-              <li key={movie.id}>
+              <CarouselItem
+                key={movie.id}
+                className="basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/6"
+              >
                 <MovieCard data={movie} href={`/movies/detail/${movie.id}`} />
-              </li>
+              </CarouselItem>
             ))}
-          </ul>
-          <ScrollBar orientation="horizontal" />
-        </ScrollArea>
+          </CarouselContent>
+        </Carousel>
       </div>
       <div className="border-b mb-10">
-        <div className="flex justify-between items-center">
-          <p className="pl-4 border-l-4 border-red-600">Top Rated</p>
-          <Link
-            className="bg-red-600 text-white text-sm p-[0.3rem] rounded-md leading-none cursor-pointer"
-            href="/movies/top_rated"
-          >
-            SEE ALL
-          </Link>
-        </div>
-        <ScrollArea className="h-auto w-full rounded-md">
-          <ul className="flex h-fit w-max space-x-4 p-4 overflow-hidden mb-2">
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="h-auto w-full rounded-md"
+        >
+          <div className="flex justify-between items-center">
+            <p className="pl-4 border-l-4 border-red-600">Top Rated</p>
+            <div className="flex items-center gap-x-8">
+              <Link
+                className="bg-red-600 text-white text-sm p-[0.3rem] rounded-md leading-none cursor-pointer relative"
+                href="/movies/top_rated"
+              >
+                SEE ALL
+              </Link>
+              <div>
+                <CarouselPrevious className="relative -left-2 top-0 -translate-y-0 h-6 w-6" />
+                <CarouselNext className="relative -right-0 top-0 -translate-y-0 h-6 w-6" />
+              </div>
+            </div>
+          </div>
+          <CarouselContent className="py-4">
             {datasTopRated?.results.map((movie) => (
-              <li key={movie.id}>
+              <CarouselItem
+                key={movie.id}
+                className="basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/6"
+              >
                 <MovieCard data={movie} href={`/movies/detail/${movie.id}`} />
-              </li>
+              </CarouselItem>
             ))}
-          </ul>
-          <ScrollBar orientation="horizontal" />
-        </ScrollArea>
+          </CarouselContent>
+        </Carousel>
       </div>
       <div className="border-b mb-10">
-        <div className="flex justify-between items-center">
-          <p className="pl-4 border-l-4 border-red-600">Upcoming</p>
-          <Link
-            className="bg-red-600 text-white text-sm p-[0.3rem] rounded-md leading-none cursor-pointer"
-            href="/movies/upcoming"
-          >
-            SEE ALL
-          </Link>
-        </div>
-        <ScrollArea className="h-auto w-full rounded-md">
-          <ul className="flex h-fit w-max space-x-4 p-4 overflow-hidden mb-2">
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="h-auto w-full rounded-md"
+        >
+          <div className="flex justify-between items-center">
+            <p className="pl-4 border-l-4 border-red-600">Upcoming</p>
+            <div className="flex items-center gap-x-8">
+              <Link
+                className="bg-red-600 text-white text-sm p-[0.3rem] rounded-md leading-none cursor-pointer relative"
+                href="/movies/upcoming"
+              >
+                SEE ALL
+              </Link>
+              <div>
+                <CarouselPrevious className="relative -left-2 top-0 -translate-y-0 h-6 w-6" />
+                <CarouselNext className="relative -right-0 top-0 -translate-y-0 h-6 w-6" />
+              </div>
+            </div>
+          </div>
+          <CarouselContent className="py-4">
             {datasUpcoming?.results.map((movie) => (
-              <li key={movie.id}>
+              <CarouselItem
+                key={movie.id}
+                className="basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/6"
+              >
                 <MovieCard data={movie} href={`/movies/detail/${movie.id}`} />
-              </li>
+              </CarouselItem>
             ))}
-          </ul>
-          <ScrollBar orientation="horizontal" />
-        </ScrollArea>
+          </CarouselContent>
+        </Carousel>
       </div>
     </div>
   );

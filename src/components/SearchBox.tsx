@@ -70,7 +70,7 @@ const SearchBox = () => {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[350px] justify-between shadow-md bg-transparent border-white hover:bg-transparent text-white hover:text-slate-400"
+          className="w-[350px] justify-between shadow-md bg-transparent border-slate-300 hover:bg-transparent text-slate-300 hover:text-slate-200"
         >
           <p className="truncate">{value || "Search movie ..."}</p>
           <Search className="ml-2 h-4 w-4 shrink-0" />

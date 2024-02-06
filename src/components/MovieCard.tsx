@@ -15,7 +15,7 @@ const MovieCard = (props: Props) => {
 
   return (
     <Link href={href}>
-      <div className="w-[190px] h-fit flex flex-col scale-100 hover:scale-[1.01] rounded-md transition-all duration-200">
+      <div className="w-full h-fit flex flex-col scale-100 hover:scale-[1.01] rounded-md transition-all duration-200">
         <Image
           src={
             poster_path
