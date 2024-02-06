@@ -31,19 +31,25 @@ async function Page({ params }: Props) {
       <div className="w-full flex justify-center relative rounded-2xl border overflow-hidden">
         <div className="w-[960px] h-[540px]">
           <iframe
-            className="h-full w-full"
             src={`https://www.youtube.com/embed/${movie.videos?.results[0]?.key}`}
+            allowFullScreen
             title={movie.title}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
+            className="h-full w-full"
           />
         </div>
         <Image
-          className="absolute top-0 left-0 -z-10 w-full rounded-md"
-          src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-          width={500}
-          height={500}
+          src={
+            movie.backdrop_path
+              ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
+              : `/images/default-movie-poster.png`
+          }
+          priority
           alt={movie.title}
+          width="0"
+          height="0"
+          sizes="100vw"
+          className="absolute top-0 left-0 -z-10 w-full rounded-md"
         />
       </div>
       <div className="w-full h-fit flex flex-col gap-6 p-6 mb-6 border rounded-2xl">

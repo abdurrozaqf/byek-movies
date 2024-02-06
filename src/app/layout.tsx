@@ -32,7 +32,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           <ReactQueryProvider>
             <Navbar />
-            <main className="w-full scroll-smooth transition-all duration-300">
+            <main className="flex-1 w-full scroll-smooth transition-all duration-300">
               {children}
             </main>
             <Toaster />
