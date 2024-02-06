@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-
 import Autoplay from "embla-carousel-autoplay";
 
 import {
@@ -20,7 +19,6 @@ import { Movie } from "@/libs/apis/movies";
 export const CarouselHeader = () => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
 
   const { data } = useQuery({
     queryKey: ["headerlist"],
@@ -35,9 +33,7 @@ export const CarouselHeader = () => {
       return;
     }
 
-    setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap() + 1);
-
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap() + 1);
     });
@@ -48,25 +44,27 @@ export const CarouselHeader = () => {
   return (
     <Carousel
       setApi={setApi}
-      className="h-[720px] mb-10 -mt-[73px]"
       orientation="vertical"
+      opts={{
+        align: "start",
+        loop: true,
+      }}
+      className="h-[720px] mb-10 -mt-[73px]"
       plugins={[plugin.current]}
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.play}
     >
       <CarouselContent className="h-[720px] relative">
-        {data?.results
-          .map((movie) => (
-            <CarouselItem key={movie.id} className="-ml-[1px]">
-              <MovieCardHeader data={movie} />
-            </CarouselItem>
-          ))
-          .slice(0, 5)}
+        {data?.results.slice(0, 5).map((movie) => (
+          <CarouselItem key={movie.id} className="-ml-[1px]">
+            <MovieCardHeader data={movie} />
+          </CarouselItem>
+        ))}
       </CarouselContent>
       <div className="absolute px-8 top-0 right-0 w-1/6 h-[720px] bg-gradient-to-l from-black/80 to-black/0 flex items-center justify-end text-slate-100 opacity-0 md:opacity-100">
         <ul className="flex flex-col gap-y-3">
-          {Array.from({ length: count }).map((_, index) => (
-            <li className="flex w-[32px]">
+          {Array.from({ length: 5 }).map((_, index) => (
+            <li key={index} className="flex w-[32px]">
               <p
                 className={`${
                   current === index + 1
@@ -78,10 +76,8 @@ export const CarouselHeader = () => {
               </p>
               <p
                 className={`w-full text-end ${
-                  current === index + 1
-                    ? "font-bold text-base"
-                    : "font-light text-sm"
-                } transition-all duration-700`}
+                  current === index + 1 ? "scale-125" : "scale-75"
+                } transition-all duration-300`}
               >
                 {index + 1}
               </p>
