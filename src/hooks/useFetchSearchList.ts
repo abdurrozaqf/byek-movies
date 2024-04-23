@@ -1,9 +1,11 @@
 "use client";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
-import axiosWithConfig from "@/libs/apis/axiosWithConfig";
-import { Response } from "@/libs/types/api";
-import { Movie } from "@/libs/apis/movies";
+
+import axiosWithConfig from "@/services/apis/axiosWithConfig";
+import { Movie } from "@/services/apis/movies";
+
+import { Response } from "@/common/types/api";
 
 const useFetchSearchList = (title: string) => {
   return useInfiniteQuery({

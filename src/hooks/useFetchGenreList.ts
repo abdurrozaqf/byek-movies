@@ -1,7 +1,7 @@
 "use client";
 
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { getMoviesGenre } from "@/libs/apis/movies";
+import { getMoviesGenre } from "@/services/apis/movies";
 
 const useFetchGenreList = (genre_id: number) => {
   return useInfiniteQuery({

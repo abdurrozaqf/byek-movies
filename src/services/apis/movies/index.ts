@@ -3,6 +3,7 @@ import {
   getMoviesList,
   getMoviesGenre,
   getDetailMovie,
+  getMoviesbyList,
   getSimilarMovies,
 } from "./api";
 import { Movie, MovieVidsType } from "./type";
@@ -12,6 +13,7 @@ export {
   getMoviesList,
   getMoviesGenre,
   getDetailMovie,
+  getMoviesbyList,
   getSimilarMovies,
 };
 
