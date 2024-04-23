@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { formatDate } from "@/libs/utils/formatter";
-import { Movie } from "@/libs/apis/movies/type";
+import { Movie } from "@/services/apis/movies";
+
+import { formatDate } from "@/utils/formatter";
 
 interface Props {
   data: Movie;
@@ -27,11 +28,11 @@ const MovieCardPages = (props: Props) => {
           width="0"
           height="100"
           sizes="100vw"
-          className="w-full h-full rounded relative"
+          className="relative w-full h-full rounded"
         />
-        <div className="h-full flex flex-col justify-end absolute bottom-0 bg-gradient-to-t from-black/80 to-black/0 w-full rounded p-4">
-          <h1 className="font-medium truncate text-white">{title}</h1>
-          <p className="text-xs text-slate-300 font-light">
+        <div className="absolute bottom-0 flex flex-col justify-end w-full h-full p-4 rounded bg-gradient-to-t from-black/80 to-black/0">
+          <h1 className="font-medium text-white truncate">{title}</h1>
+          <p className="text-xs font-light text-slate-300">
             {formatDate(release_date!)}
           </p>
         </div>

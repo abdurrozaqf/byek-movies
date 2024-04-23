@@ -12,14 +12,16 @@ import {
   CommandInput,
   CommandItem,
 } from "@/components/ui/command";
+
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+
 import { Button } from "@/components/ui/button";
 
-import { getMovies } from "@/libs/apis/movies";
+import { getMovies } from "@/services/apis/movies";
 
 interface ComboboxDatas {
   movie_id: number;
@@ -30,8 +32,8 @@ interface ComboboxDatas {
 
 const SearchBox = () => {
   const [datas, setDatas] = useState<ComboboxDatas[]>([]);
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
+  const [open, setOpen] = useState<boolean>(false);
+  const [value, setValue] = useState<string>("");
 
   const getSuggestions = useCallback(async function (query: string) {
     if (!query) {
@@ -73,7 +75,7 @@ const SearchBox = () => {
           className="w-[350px] justify-between shadow-md bg-transparent border-slate-300 hover:bg-transparent text-slate-300 hover:text-slate-200"
         >
           <p className="truncate">{value || "Search movie ..."}</p>
-          <Search className="ml-2 h-4 w-4 shrink-0" />
+          <Search className="w-4 h-4 ml-2 shrink-0" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[350px] p-0 bg-background/50 backdrop-blur">
@@ -137,7 +139,7 @@ const SearchBox = () => {
                 setOpen(false);
                 setValue("");
               }}
-              className="italic text-sm"
+              className="text-sm italic"
             >
               view all results
             </Link>
