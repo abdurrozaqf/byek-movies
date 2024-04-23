@@ -1,26 +1,30 @@
 import { Metadata } from "next";
 
-import ContentGenreList from "@/modules/genrelist/ContentGenreList";
-import { GenreList } from "@/common/constant/genre-list";
+import Container from "@/components/elements/Container";
 
-type Props = {
+import { GENRE_LIST } from "@/common/constant/genre-list";
+import { Genre } from "@/modules/movies";
+
+interface GenrePageProps {
   params: { id: number };
-};
+}
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const Genre = GenreList.genres.find((genre) => genre.id === +params.id);
+export async function generateMetadata({
+  params,
+}: GenrePageProps): Promise<Metadata> {
+  const Genre = GENRE_LIST.find((genre) => genre.id === +params.id);
 
   return {
     title: Genre?.name + " | Byek! Movies",
   };
 }
 
-async function Page({ params }: Props) {
+export default async function GenrePage({ params }: GenrePageProps) {
   return (
-    <section className="pb-10 container">
-      <ContentGenreList genre_id={params.id} />
-    </section>
+    <>
+      <Container>
+        <Genre genre_id={params.id} />
+      </Container>
+    </>
   );
 }
-
-export default Page;

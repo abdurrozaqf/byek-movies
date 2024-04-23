@@ -5,26 +5,32 @@ import Link from "next/link";
 import { UserCircle } from "lucide-react";
 
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import Container from "@/components/elements/Container";
 import MovieCard from "@/components/MovieCard";
 import { Badge } from "@/components/ui/badge";
 
-import { getDetailMovie, getSimilarMovies } from "@/libs/apis/movies";
-import { formatDate, formatRuntime } from "@/libs/utils/formatter";
+import { getDetailMovie, getSimilarMovies } from "@/services/apis/movies";
+import { formatDate, formatRuntime } from "@/utils/formatter";
+import { Detail } from "@/modules/movies";
 
-type Props = {
+interface DetailMoviePageProps {
   params: { id: number };
-};
+}
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: DetailMoviePageProps): Promise<Metadata> {
   const movie = await getDetailMovie(params.id);
   return {
     title: movie.title + " | Byek! Movies",
   };
 }
 
-async function Page({ params }: Props) {
-  const movie = await getDetailMovie(params.id);
+export default async function DetailMoviePage({
+  params,
+}: DetailMoviePageProps) {
   const similarMovies = await getSimilarMovies(params.id);
+  const movie = await getDetailMovie(params.id);
 
   return (
     <section className="flex flex-col gap-6 items-center container">
@@ -114,17 +120,35 @@ async function Page({ params }: Props) {
           <ScrollArea className="h-auto w-full rounded-md">
             <ul className="flex h-fit w-max space-x-4 py-4 px-4 overflow-hidden mb-2">
               {similarMovies.results.map((movie) => (
-                <li key={movie.id}>
+                <li key={movie.id} className="w-[200px]">
                   <MovieCard data={movie} href={`/movies/detail/${movie.id}`} />
                 </li>
               ))}
             </ul>
             <ScrollBar orientation="horizontal" />
           </ScrollArea>
+          <ScrollArea className="h-auto w-full rounded-md">
+            <div className="flex gap-x-3 w-auto h-[250px]">
+              {movie.videos?.results.map((item) => (
+                <iframe
+                  key={item.id}
+                  src={`https://www.youtube.com/embed/${item.key}`}
+                  allowFullScreen
+                  title={movie.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  className="h-auto w-full"
+                />
+              ))}
+            </div>
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
         </div>
       </div>
     </section>
+    // <>
+    //   <Container>
+    //     <Detail movie={movie} similarMovies={similarMovies} />
+    //   </Container>
+    // </>
   );
 }
-
-export default Page;
