@@ -14,15 +14,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-async function Page({ params }: Props) {
+export default async function SearchListPage({ params }: Props) {
   return (
-    <section className="pb-10 container">
-      <p className="pl-4 border-x-4 border-red-600 text-center">
+    <section className="container pb-10">
+      <p className="pl-4 text-center border-red-600 border-x-4">
         Result found: {decodeURIComponent(params.title)}
       </p>
       <ContentSearchList title={params.title} />
     </section>
   );
 }
-
-export default Page;

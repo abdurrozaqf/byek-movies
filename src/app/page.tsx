@@ -1,13 +1,20 @@
-import ContentListMovie from "@/modules/home/ContentListMovie";
-import { CarouselHeader } from "@/modules/home/HeaderSlider";
+import { getMoviesbyList } from "@/services/apis/movies";
+import Home from "@/modules/home";
 
-async function Home() {
+export default async function HomePage() {
+  const now_playing = await getMoviesbyList({ list: "now_playing" });
+  const top_rated = await getMoviesbyList({ list: "top_rated" });
+  const upcoming = await getMoviesbyList({ list: "upcoming" });
+  const popular = await getMoviesbyList({ list: "popular" });
+
   return (
-    <section className="flex flex-col w-full">
-      <CarouselHeader />
-      <ContentListMovie />
-    </section>
+    <>
+      <Home
+        popular={popular}
+        now_playing={now_playing}
+        top_rated={top_rated}
+        upcoming={upcoming}
+      />
+    </>
   );
 }
-
-export default Home;

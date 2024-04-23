@@ -1,8 +1,7 @@
 import { Metadata } from "next";
 
-import Container from "@/components/elements/Container";
-
 import { GENRE_LIST } from "@/common/constant/genre-list";
+import Container from "@/components/elements/Container";
 import { Genre } from "@/modules/movies";
 
 interface GenrePageProps {
