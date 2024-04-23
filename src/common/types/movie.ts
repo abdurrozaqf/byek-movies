@@ -56,7 +56,7 @@ export interface MovieDetail extends Movie {
   };
 }
 
-interface MovieVidsType {
+export interface MovieVidsType {
   id: string;
   iso_639_1: string;
   iso_3166_1: string;
