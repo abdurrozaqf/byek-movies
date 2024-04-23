@@ -2,10 +2,9 @@ import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import "@/styles/globals.css";
 
-import ReactQueryProvider from "@/components/react-query-provider";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/toaster";
-import Navbar from "@/components/Navbar";
+import ReactQueryProvider from "@/services/providers/react-query-provider";
+import ThemeProvider from "@/services/providers/theme-provider";
+import Layouts from "@/components/layouts";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,9 +20,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`w-full min-h-screen flex flex-col justify-center overflow-auto  ${inter.className}`}
-      >
+      <body className={inter.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -31,11 +28,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           disableTransitionOnChange
         >
           <ReactQueryProvider>
-            <Navbar />
-            <main className="flex-1 w-full scroll-smooth transition-all duration-300">
-              {children}
-            </main>
-            <Toaster />
+            <Layouts>{children}</Layouts>
           </ReactQueryProvider>
         </ThemeProvider>
       </body>
